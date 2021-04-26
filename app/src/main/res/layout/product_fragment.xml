@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.ecom.sample.ui.viewmodel.ProductViewModel" />
+
+        <import type="com.ecom.sample.utils.Mapper" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.activity.MainActivity">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="24dp" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="80dp" />
+
+
+        <TextView
+            android:id="@+id/textview_welcome"
+            style="@style/TextviewStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/welcome"
+            app:layout_constraintBottom_toTopOf="@id/guideline5"
+            app:layout_constraintEnd_toStartOf="@id/textview_all_orders"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintTop_toTopOf="@id/guideline3" />
+
+
+        <TextView
+            android:id="@+id/textview_all_orders"
+            style="@style/TextviewStyleViewAll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="end"
+            android:text="@string/all_orders"
+            app:layout_constraintBottom_toTopOf="@id/guideline5"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toEndOf="@id/textview_welcome"
+            app:layout_constraintTop_toTopOf="@id/guideline3" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/colorBackground"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/layout_keyboard"
+            app:layout_constraintEnd_toStartOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/guideline5">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"
+                android:layout_marginBottom="8dp"
+                android:background="@color/white" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_keyboard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/layout_add_to_cart"
+            app:layout_constraintEnd_toStartOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/layout_list">
+
+
+            <TextView
+                android:id="@+id/textview_one"
+                style="@style/TextviewStylePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/price_bg"
+                android:backgroundTint="@color/colorBlue"
+                android:gravity="center"
+                android:onClick="@{() -> viewmodel.handleClickEvent(1)}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="1" />
+
+            <TextView
+                android:id="@+id/textview_two"
+                style="@style/TextviewStylePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/price_bg"
+                android:backgroundTint="@color/colorBlue"
+                android:gravity="center"
+                android:onClick="@{() -> viewmodel.handleClickEvent(2)}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="2" />
+
+            <TextView
+                android:id="@+id/textview_three"
+                style="@style/TextviewStylePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/price_bg"
+                android:backgroundTint="@color/colorBlue"
+                android:gravity="center"
+                android:onClick="@{() -> viewmodel.handleClickEvent(3)}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="3" />
+
+            <TextView
+                android:id="@+id/textview_four"
+                style="@style/TextviewStylePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/price_bg"
+                android:backgroundTint="@color/colorBlue"
+                android:gravity="center"
+                android:onClick="@{() -> viewmodel.handleClickEvent(4)}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="4" />
+
+            <TextView
+                android:id="@+id/textview_five"
+                style="@style/TextviewStylePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/price_bg"
+                android:backgroundTint="@color/colorBlue"
+                android:gravity="center"
+                android:onClick="@{() -> viewmodel.handleClickEvent(5)}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="5" />
+
+            <TextView
+                android:id="@+id/textview_six"
+                style="@style/TextviewStylePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/price_bg"
+                android:backgroundTint="@color/colorBlue"
+                android:gravity="center"
+                android:onClick="@{() -> viewmodel.handleClickEvent(6)}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="6" />
+
+            <TextView
+                android:id="@+id/textview_seven"
+                style="@style/TextviewStylePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/price_bg"
+                android:backgroundTint="@color/colorBlue"
+                android:gravity="center"
+                android:onClick="@{() -> viewmodel.handleClickEvent(7)}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="7" />
+
+            <TextView
+                android:id="@+id/textview_eight"
+                style="@style/TextviewStylePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/price_bg"
+                android:backgroundTint="@color/colorBlue"
+                android:gravity="center"
+                android:onClick="@{() -> viewmodel.handleClickEvent(8)}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="8" />
+
+
+            <TextView
+                android:id="@+id/textview_nine"
+                style="@style/TextviewStylePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/price_bg"
+                android:backgroundTint="@color/colorBlue"
+                android:gravity="center"
+                android:onClick="@{() -> viewmodel.handleClickEvent(9)}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="9" />
+
+            <TextView
+                android:id="@+id/textview_zero"
+                style="@style/TextviewStylePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/price_bg"
+                android:backgroundTint="@color/colorBlue"
+                android:gravity="center"
+                android:onClick="@{() -> viewmodel.handleClickEvent(0)}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="0" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/guideline4"
+            app:layout_constraintEnd_toStartOf="@id/layout_add_to_cart"
+            app:layout_constraintStart_toStartOf="@id/guideline1">
+
+            <ImageView
+                android:id="@+id/img_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:onClick="@{() -> viewmodel.clearSelectedItem()}"
+                android:src="@drawable/ic_clear" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_add_to_cart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/price_bg"
+            app:layout_constraintBottom_toTopOf="@id/guideline4"
+            app:layout_constraintEnd_toStartOf="@id/guideline2"
+            app:layout_constraintStart_toEndOf="@id/layout_clear">
+
+
+            <TextView
+                android:id="@+id/textview_total_items"
+                style="@style/TextviewStyleSmallWhite12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:text="200 items"
+                android:textAllCaps="true"
+                app:layout_constraintBottom_toTopOf="@id/textview_price"
+                app:layout_constraintEnd_toStartOf="@id/textview_add_to_cart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/textview_price"
+                style="@style/TextviewStylePrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:textAllCaps="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/textview_add_to_cart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textview_total_items" />
+
+
+            <TextView
+                android:id="@+id/textview_add_to_cart"
+                style="@style/TextviewStyleSmallWhite14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="16dp"
+                android:drawableRight="@drawable/ic_forward"
+                android:drawablePadding="5dp"
+                android:onClick="@{()-> viewmodel.navigateAddToCart()}"
+                android:text="@string/add_to_cart"
+                android:textAllCaps="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

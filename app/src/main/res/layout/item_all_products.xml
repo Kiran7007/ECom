@@ -7,13 +7,13 @@
 
         <variable
             name="viewmodel"
-            type="com.example.emanditask.ProductsViewmodel" />
+            type="com.ecom.sample.ui.viewmodel.ProductViewModel" />
 
         <variable
             name="products"
-            type="com.example.emanditask.models.Data" />
+            type="com.ecom.sample.models.Product" />
 
-        <import type="com.example.emanditask.helpers.Mapper"/>
+        <import type="com.ecom.sample.utils.Mapper"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,7 +54,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/montserrat"
-            android:text="@{products.product_name}"
+            android:text="@{products.productName}"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@id/textview_price"
