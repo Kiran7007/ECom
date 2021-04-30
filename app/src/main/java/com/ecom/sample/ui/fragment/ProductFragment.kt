@@ -55,6 +55,7 @@ class ProductFragment : BaseFragment() {
      */
     private fun initView() {
         binding.viewmodel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         adapter = AllProductsAdapter(viewModel)
         binding.rvProduct.adapter = adapter
     }

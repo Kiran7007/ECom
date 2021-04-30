@@ -1,7 +1,10 @@
 package com.ecom.sample.ui.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
@@ -10,7 +13,6 @@ import com.ecom.sample.models.Product
 import com.ecom.sample.models.Result
 import com.ecom.sample.utils.MAX_QUANTITY
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -37,6 +39,7 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
         val factory: DataSource.Factory<Int, Product> = repository.fetchAllPagedDB()
         val pagedListBuilder: LivePagedListBuilder<Int, Product> = LivePagedListBuilder(factory, 10)
         productsLiveProduct = pagedListBuilder.build()
+        updateCartValue()
     }
 
     companion object {
@@ -81,13 +84,17 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
             it.updateProductQuantity += number
         }
 
-        /*viewModelScope.launch {
-            getProductsLiveData().observeForever { productList ->
+        updateCartValue()
+    }
+
+    private fun updateCartValue() {
+        viewModelScope.launch {
+            productsLiveProduct.observeForever { productList ->
                 val filteredList =
                     productList.filter { it != null && it.updateProductQuantity.isNotEmpty() }
                 var totalQuantity = 0
                 val list = filteredList.map { product ->
-                    if (product.updateProductQuantity.isEmpty() && product.price != 0.0) {
+                    if (product.updateProductQuantity.isNotEmpty() && product.price != 0.0) {
                         totalQuantity += product.updateProductQuantity.toInt()
                         product.updateProductQuantity.toInt() * product.price
                     } else {
@@ -96,12 +103,12 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
                 }
 
                 val totalPrice =
-                    if (list.isNullOrEmpty()) 0
+                    if (list.isNullOrEmpty()) 0.0
                     else list.reduce { sum, item -> sum + item }
-                _totalPrice.value = "₹ $totalPrice"
+                _totalPrice.value = "₹ ${"%.2f".format(totalPrice)}"
                 _totalQuantity.value = "$totalQuantity Items"
             }
-        }*/
+        }
     }
 
     fun setSelectedItem(item: Product) {
@@ -114,6 +121,7 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
                 updateProductQuantity =
                     updateProductQuantity.substring(0, updateProductQuantity.length - 1)
             }
+            updateCartValue()
         }
     }
 }
