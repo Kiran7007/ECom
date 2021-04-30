@@ -34,7 +34,7 @@
         app:layout_constraintGuide_end="24dp" />
 
     <TextView
-        android:id="@+id/textview_name"
+        android:id="@+id/tv_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -44,14 +44,14 @@
         android:text="name"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/textview_price"
+        app:layout_constraintBottom_toTopOf="@id/tv_price"
         app:layout_constraintEnd_toStartOf="@id/textview_quantity"
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintTop_toTopOf="@id/guideline3" />
 
 
     <TextView
-        android:id="@+id/textview_price"
+        android:id="@+id/tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -63,12 +63,12 @@
         android:textColor="@color/colorBlue"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/guideline4"
-        app:layout_constraintEnd_toStartOf="@id/textview_original_price"
+        app:layout_constraintEnd_toStartOf="@id/tv_original_price"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/textview_name" />
+        app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
     <TextView
-        android:id="@+id/textview_original_price"
+        android:id="@+id/tv_original_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="10.00"
@@ -79,9 +79,9 @@
         android:textColor="@color/colorGreyPrice"
         android:textSize="14sp"
         android:gravity="start"
-        app:layout_constraintStart_toEndOf="@id/textview_price"
+        app:layout_constraintStart_toEndOf="@id/tv_price"
         app:layout_constraintEnd_toStartOf="@id/textview_quantity"
-        app:layout_constraintTop_toBottomOf="@id/textview_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_name"
         app:layout_constraintBottom_toBottomOf="@id/guideline4"/>
 
     <LinearLayout
@@ -96,7 +96,7 @@
         app:layout_constraintBottom_toBottomOf="@id/guideline4"
         app:layout_constraintEnd_toStartOf="@id/guideline2"
         app:layout_constraintTop_toTopOf="@id/guideline3"
-        app:layout_constraintStart_toEndOf="@id/textview_name">
+        app:layout_constraintStart_toEndOf="@id/tv_name">
 
         <TextView
             android:layout_width="wrap_content"

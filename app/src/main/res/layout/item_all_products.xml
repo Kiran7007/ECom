@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -13,84 +13,68 @@
             name="products"
             type="com.ecom.sample.models.Product" />
 
-        <import type="com.ecom.sample.utils.Mapper"/>
+        <import type="com.ecom.sample.utils.Mapper" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp">
 
         <EditText
-            android:id="@+id/edittext_quantity"
+            android:id="@+id/et_quantity"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:background="@drawable/price_bg"
-            android:backgroundTint="@color/colorQtyBg"
+            android:background="@drawable/quantity_bg"
             android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:hint="Qty"
-            android:maxLength="3"
-            android:text="@={products.updateProductQuantity}"
-            android:textColorHint="@color/colorGreyPrice"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textSize="16sp"
             android:inputType="number"
+            android:maxLength="3"
+            android:padding="6dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/colorGreyPrice"
+            android:bindText="@{products.updateProductQuantity}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/textview_name"
+            app:layout_constraintStart_toEndOf="@id/tv_name"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textview_name"
+            android:id="@+id/tv_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:fontFamily="@font/montserrat"
             android:text="@{products.productName}"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@id/textview_price"
-            app:layout_constraintEnd_toStartOf="@id/edittext_quantity"
+            app:layout_constraintBottom_toTopOf="@id/tv_price"
+            app:layout_constraintEnd_toStartOf="@id/et_quantity"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textview_price"
+            android:id="@+id/tv_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:fontFamily="@font/montserrat"
             android:text="@{Mapper.getPrice(products.price)}"
-            android:padding="8dp"
             android:textColor="@color/colorBlue"
-            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textview_name" />
+            app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
         <TextView
-            android:id="@+id/textview_original_price"
+            android:id="@+id/tv_original_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:fontFamily="@font/montserrat"
             android:text="@{Mapper.getPrice(products.mrp)}"
-            android:padding="8dp"
             android:textColor="@color/colorGreyPrice"
-            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/textview_price"
-            app:layout_constraintTop_toBottomOf="@id/textview_name" />
-
-
+            app:layout_constraintStart_toEndOf="@id/tv_price"
+            app:layout_constraintTop_toBottomOf="@id/tv_name" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

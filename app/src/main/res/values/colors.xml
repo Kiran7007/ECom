@@ -14,6 +14,7 @@
     <color name="colorBlue">#359BDB</color>
     <color name="colorGreen">#41BF77</color>
     <color name="colorGreyClear">#99A1A8</color>
+    <color name="colorGrey">#DBDCDD</color>
     <color name="colorQtyBg">#EDF0F6</color>
     <color name="colorGreyPrice">#959494</color>
     <color name="colorQtyYellow">#FDDA4C</color>

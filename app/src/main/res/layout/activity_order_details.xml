@@ -48,7 +48,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Order #3"
-        style="@style/TextviewStyle"
+        style="@style/TextViewStyle"
         android:drawableLeft="@drawable/ic_back"
         android:drawablePadding="5dp"
         app:layout_constraintStart_toStartOf="@id/guideline1"
@@ -57,7 +57,7 @@
         app:layout_constraintBottom_toTopOf="@id/guideline5"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:id="@+id/textview_welcome"/>
+        android:id="@+id/tv_welcome"/>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -226,7 +226,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@id/recycleview"/>
+                android:id="@id/rv_product"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

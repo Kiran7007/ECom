@@ -48,31 +48,31 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/cart"
-        style="@style/TextviewStyle"
+        style="@style/TextViewStyle"
         android:drawableLeft="@drawable/ic_back"
         android:drawablePadding="5dp"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintEnd_toStartOf="@id/textview_all_orders"
+        app:layout_constraintEnd_toStartOf="@id/tv_all_orders"
         app:layout_constraintTop_toTopOf="@id/guideline3"
         app:layout_constraintBottom_toTopOf="@id/guideline5"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:id="@+id/textview_welcome"/>
+        android:id="@+id/tv_welcome"/>
 
 
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/clear_cart"
-        style="@style/TextviewStyleViewAll"
-        app:layout_constraintStart_toEndOf="@id/textview_welcome"
+        style="@style/TextViewStyleViewAll"
+        app:layout_constraintStart_toEndOf="@id/tv_welcome"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintTop_toTopOf="@id/guideline3"
         app:layout_constraintBottom_toTopOf="@id/guideline5"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:gravity="end"
-        android:id="@+id/textview_all_orders"/>
+        android:id="@+id/tv_all_orders"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -242,7 +242,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@id/recycleview"/>
+                android:id="@id/rv_product"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -259,7 +259,7 @@
 
 
         <TextView
-            android:id="@+id/textview_total_items"
+            android:id="@+id/tv_total_items"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="200 items"
@@ -269,14 +269,14 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/textview_add_to_cart"
-            app:layout_constraintBottom_toTopOf="@id/textview_price"
-            style="@style/TextviewStyleSmallWhite12" />
+            app:layout_constraintEnd_toStartOf="@id/tv_add_to_cart"
+            app:layout_constraintBottom_toTopOf="@id/tv_price"
+            style="@style/TextViewStyleSmallWhite" />
 
 
 
         <TextView
-            android:id="@+id/textview_price"
+            android:id="@+id/tv_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="768.00"
@@ -285,14 +285,14 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textview_total_items"
-            app:layout_constraintEnd_toStartOf="@id/textview_add_to_cart"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_items"
+            app:layout_constraintEnd_toStartOf="@id/tv_add_to_cart"
             app:layout_constraintBottom_toBottomOf="parent"
-            style="@style/TextviewStylePrice"/>
+            style="@style/TextViewStylePrice"/>
 
 
         <TextView
-            android:id="@+id/textview_add_to_cart"
+            android:id="@+id/tv_add_to_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/place_order"
@@ -302,7 +302,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            style="@style/TextviewStyleSmallWhite14" />
+            style="@style/TextViewStyleSmallWhite" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

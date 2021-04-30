@@ -45,15 +45,15 @@ class AllProductsAdapter(private val viewModel: ProductViewModel) :
         fun bind(item: Product, viewModel: ProductViewModel) {
             binding.products = item
             binding.viewmodel = viewModel
-            disableSoftKeyboard(binding.edittextQuantity)
+            disableSoftKeyboard(binding.etQuantity)
 
-            binding.edittextQuantity.setOnFocusChangeListener { _, isFocused ->
+            binding.etQuantity.setOnFocusChangeListener { _, isFocused ->
                 if (isFocused) {
                     viewModel.setSelectedItem(item)
                 }
             }
 
-            binding.textviewOriginalPrice.apply {
+            binding.tvOriginalPrice.apply {
                 paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             }
         }

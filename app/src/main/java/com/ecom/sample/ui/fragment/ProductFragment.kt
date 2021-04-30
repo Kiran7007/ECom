@@ -37,7 +37,7 @@ class ProductFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = ProductFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -48,13 +48,6 @@ class ProductFragment : BaseFragment() {
         initView()
         observerPeoples()
         handleNavigationObserver()
-        observeQunatity()
-    }
-
-    private fun observeQunatity() {
-        viewModel.quantity.observe(viewLifecycleOwner, Observer { pair ->
-
-        })
     }
 
     /**
@@ -63,7 +56,7 @@ class ProductFragment : BaseFragment() {
     private fun initView() {
         binding.viewmodel = viewModel
         adapter = AllProductsAdapter(viewModel)
-        binding.recycleview.adapter = adapter
+        binding.rvProduct.adapter = adapter
     }
 
     /**
