@@ -24,7 +24,7 @@
 
         <EditText
             android:id="@+id/et_quantity"
-            android:layout_width="60dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -34,7 +34,8 @@
             android:hint="Qty"
             android:inputType="number"
             android:maxLength="3"
-            android:padding="6dp"
+            android:ems="3"
+            android:paddingVertical="4dp"
             android:textColor="@color/black"
             android:textColorHint="@color/colorGreyPrice"
             android:bindText="@{products.updateProductQuantity}"
