@@ -1,8 +1,9 @@
 package com.ecom.sample.data.repository
 
 import androidx.paging.DataSource
+import com.ecom.sample.data.db.entity.Cart
 import com.ecom.sample.models.Result
-import com.ecom.sample.models.Product
+import com.ecom.sample.data.db.entity.Product
 import kotlinx.coroutines.flow.Flow
 
 interface ProductRepository {
@@ -18,6 +19,11 @@ interface ProductRepository {
     suspend fun insert(data: List<Product>): LongArray
 
     /**
+     * Insert the list of cart in the database.
+     */
+    suspend fun insertCartList(data: List<Cart>): LongArray
+
+    /**
      * Fetch the data from location database
      */
     fun fetchDataFromDB(): Flow<List<Product>>
@@ -27,4 +33,5 @@ interface ProductRepository {
      */
     fun fetchAllPagedDB(): DataSource.Factory<Int, Product>
 
+    fun clearAllCartItems()
 }

@@ -4,8 +4,11 @@ import androidx.room.Room
 import com.ecom.sample.BuildConfig
 import com.ecom.sample.data.db.AppDatabase
 import com.ecom.sample.data.remote.ApiService
+import com.ecom.sample.data.repository.CartRepository
+import com.ecom.sample.data.repository.CartRepositoryImpl
 import com.ecom.sample.data.repository.ProductRepository
 import com.ecom.sample.data.repository.ProductRepositoryImpl
+import com.ecom.sample.ui.viewmodel.CartViewModel
 import com.ecom.sample.ui.viewmodel.ProductViewModel
 import com.ecom.sample.utils.DATABASE_NAME
 import com.google.gson.GsonBuilder
@@ -60,13 +63,20 @@ val databaseModules = module {
         val database: AppDatabase = get()
         database.productDao()
     }
+
+    single(createOnStart = false) {
+        val database: AppDatabase = get()
+        database.cartDao()
+    }
 }
 
 val repositoryModules = module {
-    single<ProductRepository> { ProductRepositoryImpl(get(), get()) }
+    single<ProductRepository> { ProductRepositoryImpl(get(), get(), get()) }
+    single<CartRepository> { CartRepositoryImpl(get(), get()) }
 }
 
 val viewModelModules = module {
     viewModel { ProductViewModel(get()) }
+    viewModel { CartViewModel(get()) }
 }
 

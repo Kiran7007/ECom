@@ -9,7 +9,6 @@
             name="viewmodel"
             type="com.ecom.sample.ui.viewmodel.ProductViewModel" />
 
-        <import type="com.ecom.sample.utils.Mapper" />
     </data>
 
 
@@ -59,6 +58,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
+            tools:listitem="@layout/layout_products_item"
             android:layout_marginBottom="10dp"
             android:paddingHorizontal="10dp"
             android:background="@color/white"
@@ -244,7 +244,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:gravity="center"
-                    android:onClick="@{()-> viewmodel.navigateAddToCart()}"
                     android:text="@string/add_to_cart"
                     android:textAllCaps="true"
                     android:textSize="14sp"

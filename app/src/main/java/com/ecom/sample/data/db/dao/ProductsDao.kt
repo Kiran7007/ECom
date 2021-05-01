@@ -1,9 +1,11 @@
-package com.ecom.sample.data.db
+package com.ecom.sample.data.db.dao
 
 import androidx.paging.DataSource
-import androidx.room.*
-import com.ecom.sample.models.CartEntity
-import com.ecom.sample.models.Product
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.ecom.sample.data.db.entity.Product
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -17,8 +19,4 @@ interface ProductsDao {
 
     @Query("SELECT * FROM products")
     fun getAllPaged(): DataSource.Factory<Int, Product>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertIntoCart(cart: CartEntity?)
-
 }

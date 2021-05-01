@@ -11,7 +11,7 @@
 
         <variable
             name="products"
-            type="com.ecom.sample.models.Product" />
+            type="com.ecom.sample.data.db.entity.Product" />
 
         <import type="com.ecom.sample.utils.Mapper" />
     </data>
@@ -74,6 +74,7 @@
             android:fontFamily="@font/montserrat"
             android:text="@{Mapper.getPrice(products.mrp)}"
             android:textColor="@color/colorGreyPrice"
+            android:layout_marginHorizontal="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_price"
             app:layout_constraintTop_toBottomOf="@id/tv_name" />

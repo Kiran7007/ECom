@@ -9,12 +9,12 @@ import android.widget.EditText
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.ecom.sample.databinding.ItemAllProductsBinding
-import com.ecom.sample.models.Product
+import com.ecom.sample.data.db.entity.Product
+import com.ecom.sample.databinding.LayoutProductsItemBinding
 import com.ecom.sample.ui.viewmodel.ProductViewModel
 
-class AllProductsAdapter(private val viewModel: ProductViewModel) :
-    PagedListAdapter<Product, AllProductsAdapter.ProductViewHolder>(ProductDiffCallback()) {
+class ProductsAdapter(private val viewModel: ProductViewModel) :
+    PagedListAdapter<Product, ProductsAdapter.ProductViewHolder>(ProductDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ProductViewHolder.from(parent)
@@ -28,12 +28,12 @@ class AllProductsAdapter(private val viewModel: ProductViewModel) :
         override fun areContentsTheSame(oldItem: Product, newItem: Product) = oldItem == newItem
     }
 
-    class ProductViewHolder(private val binding: ItemAllProductsBinding) :
+    class ProductViewHolder(private val binding: LayoutProductsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun from(parent: ViewGroup): ProductViewHolder {
-                val binding = ItemAllProductsBinding.inflate(
+                val binding = LayoutProductsItemBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false

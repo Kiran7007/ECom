@@ -9,10 +9,14 @@ import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.ecom.sample.data.repository.ProductRepository
-import com.ecom.sample.models.Product
+import com.ecom.sample.data.db.entity.Cart
+import com.ecom.sample.data.db.entity.Product
 import com.ecom.sample.models.Result
 import com.ecom.sample.utils.MAX_QUANTITY
+import com.ecom.sample.utils.Navigator
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -21,11 +25,8 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
     /**
      * Provides the data to the view in the form of live data.
      */
-    private var productsLiveProduct: LiveData<PagedList<Product>>
+    private lateinit var productsLiveProduct: LiveData<PagedList<Product>>
     private var selectedItem: Product? = null
-
-    private var _navigateAddToCart = MutableLiveData<Boolean>()
-    val navigateAddToCart: LiveData<Boolean> get() = _navigateAddToCart
 
     private var _totalQuantity = MutableLiveData<String>()
     val totalQuantity: LiveData<String> get() = _totalQuantity
@@ -35,11 +36,6 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
 
     init {
         fetchDataFromRemote()
-
-        val factory: DataSource.Factory<Int, Product> = repository.fetchAllPagedDB()
-        val pagedListBuilder: LivePagedListBuilder<Int, Product> = LivePagedListBuilder(factory, 10)
-        productsLiveProduct = pagedListBuilder.build()
-        updateCartValue()
     }
 
     companion object {
@@ -47,6 +43,13 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
     }
 
     fun getProductsLiveData() = productsLiveProduct
+
+    fun updateData() {
+        val factory: DataSource.Factory<Int, Product> = repository.fetchAllPagedDB()
+        val pagedListBuilder: LivePagedListBuilder<Int, Product> = LivePagedListBuilder(factory, 10)
+        productsLiveProduct = pagedListBuilder.build()
+        updateCartValue()
+    }
 
     /**
      * Gets the data from the remote server.
@@ -71,8 +74,27 @@ class ProductViewModel(private val repository: ProductRepository) : ViewModel() 
         }
     }
 
-    fun navigateAddToCart() {
-        _navigateAddToCart.value = true
+    fun saveItemQuantity() {
+        val productList = productsLiveProduct.value
+        if (productList != null) {
+            val cartList =
+                productList.filter { it != null && it.updateProductQuantity.isNotEmpty() }
+                    .map {
+                        Cart(
+                            id = it.productId,
+                            mrp = it.mrp,
+                            productName = it.productName,
+                            productQuantity = it.updateProductQuantity,
+                            productPrice = it.price
+                        )
+                    }
+
+            viewModelScope.launch {
+                withContext(Dispatchers.IO) { repository.clearAllCartItems() }
+                val intCount = withContext(Dispatchers.IO) { repository.insertCartList(cartList) }
+                Log.d(TAG, "Cart data inserted : $intCount")
+            }
+        }
     }
 
     fun handleClickEvent(number: Int) {

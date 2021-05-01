@@ -1,4 +1,4 @@
-package com.ecom.sample.models
+package com.ecom.sample.data.db.entity
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
